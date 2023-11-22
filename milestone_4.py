@@ -29,48 +29,48 @@ class Hangman():
         while(True):
             guess = str(input("Enter a letter you think may be in the random word: "))
 
-            if guess == "esc":
+            if guess == "esc": #used to break out of the loop automatically
                 break
 
-            if guess.isalpha() and len(guess) != 1:
+            if guess.isalpha() and len(guess) != 1: # checks that guess is alphabetical and single digit
                 print("Invalid letter. Please, enter a single alphabetical character.")
                 guess = str(input("Enter a letter you think may be in the random word: "))
-            elif guess in self.list_of_guesses:
+            elif guess in self.list_of_guesses: # Handles response if repeated a guess
                 print("You already tried that letter!")
-            else:
-                self.check_guess(guess)
+            else: # else statement checks the guess and handles user running out of lives.
+                self._check_guess(guess)
                 if self.num_lives == 0:
                     print("You have lost!")
                     break
-                                
+                elif self.num_letters == 0 and self.num_lives >= 1:
+                    print("Congratulations, you have won!")
+                    break
+
         #.check_guess(guess)
 
 
-    '''Checks if the guessed letter is in the word.'''
-    def check_guess(self, guess):
-        guess = guess.lower()
-        print(len(self.word))
-        if guess in self.word:
+    '''Internal method that checks if the guessed letter is in the word.'''
+    def _check_guess(self, guess):
+        guess = guess.lower() # makes guess lowercase for functionality reasons
+        if guess in self.word: # checks if guess is in the word
             print(f"Good guess! {guess} is in the word.")
-            for i in range(len(self.word)):
+            for i in range(len(self.word)): # loop replaces underscores with guess at correct idxs
                 if guess == self.word[i]:
                     self.word_guessed[i] = guess
                     print(self.word_guessed)
-            u_counter = 0
-            for i in self.word_guessed:
+            u_counter = 0 # counter keeps track of number of letters guessed
+            for i in self.word_guessed: # loop used to count how many letters guessed
                 if i != '_':
                     u_counter += 1
-            self.num_letters = len(self.word_guessed) - u_counter
-        else:
+            self.num_letters = len(self.word_guessed) - u_counter # updates num_letters
+            print(f"You have {self.num_letters} letters left to guess")
+        else: # else statement handles what to do if guess is not in the letter
             self.num_lives -= 1
             print(f"Sorry, {guess} is not in the word. Try again.")
             print(f"You have {self.num_lives} lives left. ")
 
                 
     
-
-
-#game1.ask_for_input()
 game1 = Hangman(word_list)
 game1.generate_random_word()
 game1.ask_for_input()
