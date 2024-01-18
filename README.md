@@ -1,6 +1,18 @@
 # Hangman Project
 
+## Table of Contents
+[Project Brief](#project-brief)
+[Installation](#installation)
+[Features](#features)
+[File Structure](#file-structure)
+[License](#license)
+
+## Project Brief
 This game lets you play Hangman in Python. There are a total of 5 words you can guess! Even though the project is complete I may incorporate a database of words in the future so that the game is more challenging. The aim of this project was to create a functional version of Hangman using text and get some practice using OOP in Python while doing so. An additional aim was to get more practice using Version control while working on a project. I have achieved these aims and feel more confident in using Python classes and Git.
+
+Example image of the game:
+
+![Alt text](hangman_example.JPG)
 
 ## Installation: 
 No need to install anything, but it is useful to clone the git repo (using `git clone https://github.com/Qwandy/Hangman`). To run the file, simply type `python3 milestone_4.py` and it will start the game for you.
